@@ -1,0 +1,18 @@
+
+
+# Bulk rename jpg files to the date they were taken
+
+
+
+
+
+
+$Folder = 'D:\Autopsy\Ext HDD\Export\test'
+$CharWhiteList = '[^: \w\/]'
+$Shell = New-Object -ComObject shell.application
+$i = 1
+gci $Folder *.jpg -Recurse  | ForEach{
+    $dir = $Shell.Namespace($_.DirectoryName)
+    $DateTaken = [DateTime]($dir.GetDetailsOf($dir.ParseName($_.Name),12) -replace $CharWhiteList)
+    Rename-Item $_.FullName ('{0:yyyy-MM-dd}_{1:0000}.jpg' -f $DateTaken, $i++)
+}

@@ -1,13 +1,14 @@
 
 
 # Bulk rename jpg files to the date they were taken
+# Change your source folder on line 11
 
 
 
 
 
 
-$Folder = 'D:\Autopsy\Ext HDD\Export\test'
+$Folder = ''
 $CharWhiteList = '[^: \w\/]'
 $Shell = New-Object -ComObject shell.application
 $i = 1
